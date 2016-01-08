@@ -48,42 +48,17 @@ import java.util.concurrent.Callable;
 public class MainActivity extends AppCompatActivity {
 
     private Intent intent;
-    private ImageView image;
+//    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        image = (ImageView) findViewById(R.id.image);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        image = (ImageView) findViewById(R.id.image);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                new AlertView("上传图片", null, "取消", null,
-                        new String[]{"拍照", "从手机相册选取"},
-                        MainActivity.this, AlertView.Style.ActionSheet, new OnItemClickListener() {
-                    public void onItemClick(Object o, int position) {
-                        switch (position) {
-                            case 0:
-                                intent = new Intent();
-                                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                                startActivityForResult(intent, 0);
-                                break;
-                            case 1:
-                                intent = new Intent();
-                                intent.setType("image/*");
-                                intent.setAction(Intent.ACTION_GET_CONTENT);
-                                startActivityForResult(intent, 1);
-                                break;
-                        }
-                    }
-                }).show();
-            }
-        });
     }
 
 
@@ -112,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     file = new File(file.getAbsolutePath() + "/" + System.currentTimeMillis() + ".png");
                     file = ImageUtil.photoImage(getApplication(), data, file);
-                    image.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
+//                    image.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
                     if (file != null) {
                         uploadFile(file.getAbsolutePath());
                     }
@@ -174,9 +149,6 @@ public class MainActivity extends AppCompatActivity {
                                 "srj7oxebCUV0Y2RbWrj6KjlaUpVS0K7i","demotest");
                         PornDetectInfo info =cloud.pornDetect(result.url);
                         Log.e("jiang", "result="+info.result);
-
-
-
 
 
                     }
